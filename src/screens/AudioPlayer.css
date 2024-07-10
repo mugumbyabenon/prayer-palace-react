@@ -1,0 +1,78 @@
+/* AudioPlayer.css */
+.audio-player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff0099, #00bfff); /* Magenta and Blue gradient */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    margin: auto;
+}
+
+.audio-player-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.audio-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.audio-cover {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Fixed height */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.audio-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+.track-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.artist-name {
+    font-size: 14px;
+    margin: 0;
+}
+
+.audio-player-wrapper {
+    width: 70vw; /* 70% of viewport width */
+    height: 100px; /* Fixed height */
+    margin-bottom: 15px;
+}
+
+.audio-element {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background: #fff; /* Background for better visibility */
+}
+
+.download-button {
+    background-color: #ff0099;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #e6007e;
+}

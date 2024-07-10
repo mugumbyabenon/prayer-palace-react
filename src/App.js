@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import SignInSide from './screens/Login';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './screens/Home/Home';
+import SignUp from './screens/Home/signup';
+import PubliSermons from './screens/PublicSermons';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+    <Route path="/login" element={<SignInSide />} />
+    <Route path="/" element={<Home />} />
+    <Route path="/publicsermons" element={<PubliSermons />} />
+    <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
