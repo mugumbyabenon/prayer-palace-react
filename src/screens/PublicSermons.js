@@ -67,7 +67,7 @@ function PubliSermons() {
   const [allSermons, setAllSermons] = useState([]); // Store all data from Firestore
   const [sermons, setSermons] = useState([]); // Filtered and paginated data
   const [page, setPage] = useState(1);
-  const [itemsPerPage] = useState(3);
+  const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState('');
   const [totalPages, setTotalPages] = useState(1);
   const [noResults, setNoResults] = useState(false);
@@ -152,9 +152,10 @@ function PubliSermons() {
             filePath={sermon.audioConfig}
             imageUrl="https://aztec.x10.mx/wp/wp-content/uploads/2024/07/cropped-church-logo-2.webp"
             trackName={sermon.sermonName}
-            videoLink= {sermon.videoLink}
+            videoLink= 'https://www.youtube.com/@dr.bishopmusisikgrivas'//{sermon.videoLink}
             albumName={sermon.albumName || 'Unknown Album'}
           />
+          
         </div>
       ))}
 

@@ -101,8 +101,9 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
     
         if (videoLink && isValidUrl(videoLink)) {
            
-            window.open(videoLink, '_blank');
+        //    window.open(videoLink, '_blank');
         }
+        window.open(videoLink, '_blank');
     };
     
     const formatTime = (time) => {
