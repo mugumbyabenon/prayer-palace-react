@@ -10,7 +10,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 
-const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName }) => {
+const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }) => {
     const [audioUrl, setAudioUrl] = useState('');
     const [audioElement, setAudioElement] = useState(null);
     const [playing, setPlaying] = useState(false);
@@ -89,11 +89,22 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName }) => {
     };
 
     const handleImageClick = () => {
-        if (audioUrl) {
-            window.open(audioUrl, '_blank');
+        const isValidUrl = (url) => {
+            const urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate the protocol
+                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+                '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+            return !!urlPattern.test(url);
+        };
+    
+        if (videoLink && isValidUrl(videoLink)) {
+           
+            window.open(videoLink, '_blank');
         }
     };
-
+    
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60).toString().padStart(2, '0');
