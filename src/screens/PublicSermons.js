@@ -67,7 +67,7 @@ function PubliSermons() {
   const [allSermons, setAllSermons] = useState([]); // Store all data from Firestore
   const [sermons, setSermons] = useState([]); // Filtered and paginated data
   const [page, setPage] = useState(1);
-  const [itemsPerPage] = useState(2);
+  const [itemsPerPage] = useState(3);
   const [searchTerm, setSearchTerm] = useState('');
   const [totalPages, setTotalPages] = useState(1);
   const [noResults, setNoResults] = useState(false);
