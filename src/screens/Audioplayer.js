@@ -113,7 +113,7 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
     };
 
     return (
-        <Card sx={{ display: 'flex', flexDirection: 'row', height: 160, width: '100%', maxWidth: 550 }}>
+        <Card sx={{ display: 'flex', flexDirection: 'row', height: 160, width: '100%', maxWidth: 500 }}>
             <Box sx={{ position: 'relative', width: 190, height: '100%', cursor: 'pointer' }} onClick={handleImageClick}>
                 <CardMedia
                     component="img"

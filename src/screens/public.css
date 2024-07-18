@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line if they don't fit */
+  }
+  
+  .item {
+    flex: 1 1 100%; /* Default to full width */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    padding: 10px; /* Adjust as needed */
+    /* Add additional styles for items */
+  }
+  
+  @media (min-width: 768px) {
+    .item {
+      flex: 1 1 50%; /* Two items per row on medium screens */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .item {
+      flex: 1 1 50%; /* Three items per row on larger screens */
+    }
+  }
+  

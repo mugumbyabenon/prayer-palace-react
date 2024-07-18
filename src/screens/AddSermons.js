@@ -24,6 +24,7 @@ function AddSermonDialog({ open, onClose }) {
   const [sermonName, setSermonName] = useState('');
   const [audioFile, setAudioFile] = useState(null);
   const [coverFile, setCoverFile] = useState(null);
+  const [coverLink, setCoverLink] = useState('https://firebasestorage.googleapis.com/v0/b/prayerpalace-d6159.appspot.com/o/coverphotos%2FThe%20Word%20of%20God%20is%20living%20and%20active?alt=media&token=3aafb760-cad1-46c2-9636-88f1df54d976');
   const [videoLink, setVideoLink] = useState('https://www.youtube.com/@dr.bishopmusisikgrivas');
   const [audioLink, setAudioLink] = useState('');
   const [inputMethod, setInputMethod] = useState('');
@@ -87,10 +88,11 @@ function AddSermonDialog({ open, onClose }) {
         downloadURL = await getDownloadURL(storageRef);
         audioFilePath = `audio/${sermonName}.mp3`;
       }
-      const storageRef = ref(storage, `coverphotos/${sermonName}`);
-      await uploadBytes(storageRef, coverFile);
-    
-      coverFilePath = await getDownloadURL(storageRef);
+      if ( coverFile) {
+      const storageRef2 = ref(storage, `coverphotos/${sermonName}`);
+      await uploadBytes(storageRef2, coverFile);
+      coverFilePath = await getDownloadURL(storageRef2);
+      setCoverLink(coverFilePath)}
       const uniqueId = `sermon_${new Date().toISOString()}`;
 
       const sermonData = {
@@ -99,7 +101,7 @@ function AddSermonDialog({ open, onClose }) {
         videoLink,
         audioConfig: audioFilePath,
         uniqueId,
-        coverphoto:coverFilePath
+        coverphoto:coverLink
       };
 
       await setDoc(doc(db, 'sermons', uniqueId), sermonData);

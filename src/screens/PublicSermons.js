@@ -1,7 +1,7 @@
 // PubliSermons.js
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
+import { doc,collection, getDocs, query, orderBy, getDoc, getFirestore } from 'firebase/firestore';
+import app, { db } from '../firebaseConfig';
 import AudioPlayerTEST from './Audioplayer';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -14,8 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import './public.css'
 import SearchIcon from '@mui/icons-material/Search';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,14 +68,34 @@ function PubliSermons() {
   const [allSermons, setAllSermons] = useState([]); // Store all data from Firestore
   const [sermons, setSermons] = useState([]); // Filtered and paginated data
   const [page, setPage] = useState(1);
-  const [itemsPerPage] = useState(4);
+  const [itemsPerPage,setItemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState('');
   const [totalPages, setTotalPages] = useState(1);
   const [noResults, setNoResults] = useState(false);
 
+   const getUrl = async () => {
+    try {
+      const db2 = getFirestore(app);
+        const docRef = await doc(db2, "intial", 'X5qpD4VgnxeJ7Fl1FyCt');
+        const docSnapshot = await getDoc(docRef); // Initialize `doc` here
+        if (docSnapshot.exists()) {
+            const data = docSnapshot.data();
+            const len = data['len']
+            setItemsPerPage(len)
+        } else {
+            console.log('No such document!');
+            throw new Error('No such document!');
+        }
+    } catch (error) {
+        console.log('Error getting document:', error);
+        throw new Error(error);
+    }
+};
+getUrl()
   useEffect(() => {
     const fetchSermons = async () => {
       try {
+
         const sermonRef = collection(db, 'sermons');
         const q = query(sermonRef, orderBy('sermonName'));
         const querySnapshot = await getDocs(q);
@@ -145,9 +166,9 @@ function PubliSermons() {
           </Search>
           <div style={{ height:'15px'}}></div>
       {noResults && <p>No results found.</p>}
-
+      <div class="container">
       {sermons.map((sermon, index) => (
-        <div key={index} style={{ marginBottom: '10px' }}>
+        <div key={index}  class="item" style={{ marginBottom: '10px' }}>
           <AudioPlayerTEST
             filePath={sermon.audioConfig}
             imageUrl={ sermon.coverphoto ? sermon.coverphoto : "https://aztec.x10.mx/wp/wp-content/uploads/2024/07/cropped-church-logo-2.webp"}
@@ -157,8 +178,9 @@ function PubliSermons() {
           />
           
         </div>
+        
       ))}
-
+</div>
       {totalPages > 1 && (
         <Stack spacing={2} style={{ marginTop: '20px' }}>
           <Pagination
