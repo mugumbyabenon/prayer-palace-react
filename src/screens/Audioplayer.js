@@ -113,7 +113,7 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
     };
 
     return (
-        <Card sx={{ display: 'flex', flexDirection: 'row', height: 180, width: '100%', maxWidth: '92vw' }}>
+        <Card sx={{ display: 'flex', flexDirection: 'row', height: 250, width: '100%', maxWidth: '92vw' }}>
             <Box sx={{ position: 'relative', width: 190, height: '100%', cursor: 'pointer' }} onClick={handleImageClick}>
                 <CardMedia
                     component="img"
@@ -138,8 +138,19 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
                 </Box>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%' }}>
-                <CardContent sx={{ padding: 1, flex: 'none', overflow: 'hidden', height: 30, display: 'flex', alignItems: 'center' }}>
-                    <Typography variant="body2" sx={{ fontWeight: 'bold', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', marginLeft: 1 }}>{trackName}</Typography>
+                <CardContent sx={{ padding: 1, flex: 'none', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{ width: '70%', overflow: 'hidden' }}>
+                        <Typography 
+                            variant="body2" 
+                            sx={{ 
+                                fontWeight: 'bold', 
+                                whiteSpace: 'normal', 
+                                wordBreak: 'break-word', 
+                                marginLeft: 1 
+                            }}>
+                            {trackName}
+                        </Typography>
+                    </Box>
                 </CardContent>
                 <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, padding: 1, justifyContent: 'center', height: 30 }}>
                     {audioUrl ? (
