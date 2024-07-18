@@ -23,7 +23,8 @@ import { db, storage } from '../firebaseConfig';
 function AddSermonDialog({ open, onClose }) {
   const [sermonName, setSermonName] = useState('');
   const [audioFile, setAudioFile] = useState(null);
-  const [videoLink, setVideoLink] = useState('');
+  const [coverFile, setCoverFile] = useState(null);
+  const [videoLink, setVideoLink] = useState('https://www.youtube.com/@dr.bishopmusisikgrivas');
   const [audioLink, setAudioLink] = useState('');
   const [inputMethod, setInputMethod] = useState('');
   const [error, setError] = useState('');
@@ -57,6 +58,16 @@ function AddSermonDialog({ open, onClose }) {
       setError('Please select a valid audio file.');
     }
   };
+  const handleCoverFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      setCoverFile(file);
+      setError('');
+    } else {
+      setAudioFile(null);
+      setError('Please select a valid audio file.');
+    }
+  };
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -69,14 +80,17 @@ function AddSermonDialog({ open, onClose }) {
 
       let audioFilePath = '';
       let downloadURL = '';
-
+      let coverFilePath = '';
       if (inputMethod === 'audioFile' && audioFile) {
         const storageRef = ref(storage, `audio/${sermonName}.mp3`);
         await uploadBytes(storageRef, audioFile);
         downloadURL = await getDownloadURL(storageRef);
         audioFilePath = `audio/${sermonName}.mp3`;
       }
-
+      const storageRef = ref(storage, `coverphotos/${sermonName}`);
+      await uploadBytes(storageRef, coverFile);
+    
+      coverFilePath = await getDownloadURL(storageRef);
       const uniqueId = `sermon_${new Date().toISOString()}`;
 
       const sermonData = {
@@ -85,6 +99,7 @@ function AddSermonDialog({ open, onClose }) {
         videoLink,
         audioConfig: audioFilePath,
         uniqueId,
+        coverphoto:coverFilePath
       };
 
       await setDoc(doc(db, 'sermons', uniqueId), sermonData);
@@ -162,6 +177,15 @@ function AddSermonDialog({ open, onClose }) {
           onChange={(e) => setVideoLink(e.target.value)}
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        <TextField
+            margin="dense"
+            type="file"
+            accept="image/*"
+            fullWidth
+            onChange={handleCoverFileChange}
+            error={Boolean(error)}
+            helperText={error}
+          />
       </DialogContent>
       <DialogActions>
         {loading ? (

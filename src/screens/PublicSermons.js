@@ -150,7 +150,7 @@ function PubliSermons() {
         <div key={index} style={{ marginBottom: '10px' }}>
           <AudioPlayerTEST
             filePath={sermon.audioConfig}
-            imageUrl="https://aztec.x10.mx/wp/wp-content/uploads/2024/07/cropped-church-logo-2.webp"
+            imageUrl={ sermon.coverphoto ? sermon.coverphoto : "https://aztec.x10.mx/wp/wp-content/uploads/2024/07/cropped-church-logo-2.webp"}
             trackName={sermon.sermonName}
             videoLink= 'https://www.youtube.com/@dr.bishopmusisikgrivas'//{sermon.videoLink}
             albumName={sermon.albumName || 'Unknown Album'}
