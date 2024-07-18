@@ -113,7 +113,7 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
     };
 
     return (
-        <Card sx={{ display: 'flex', flexDirection: 'row', height: 250, width: '100%', maxWidth: '92vw' }}>
+        <Card sx={{ display: 'flex', flexDirection: 'row', height: 279, width: '100%', maxWidth: '92vw' }}>
             <Box sx={{ position: 'relative', width: 190, height: '100%', cursor: 'pointer' }} onClick={handleImageClick}>
                 <CardMedia
                     component="img"
@@ -139,7 +139,7 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%' }}>
                 <CardContent sx={{ padding: 1, flex: 'none', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-                    <Box sx={{ width: '70%', overflow: 'hidden' }}>
+                    <Box sx={{ width: '70%', overflow: 'hidden' ,maxWidth:'450px'}}>
                         <Typography 
                             variant="body2" 
                             sx={{ 
