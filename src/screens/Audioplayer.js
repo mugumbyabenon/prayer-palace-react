@@ -117,7 +117,7 @@ const AudioPlayerTEST = ({ filePath, imageUrl, trackName, albumName, videoLink }
             <Box sx={{ position: 'relative', width: 190, height: '100%', cursor: 'pointer' }} onClick={handleImageClick}>
                 <CardMedia
                     component="img"
-                    sx={{ width: '100%', height: '100%', objectFit: 'cover', maxWidth:'30vw' }}
+                    sx={{ width: '100%', height: '100%', objectFit: 'cover', maxWidth:'40vw' }}
                     image={imageUrl}
                     alt="Album cover"
                 />
