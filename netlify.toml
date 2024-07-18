@@ -1,5 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  environment = { 
+    CI = "false",
+    NODE_VERSION = "18.18.0"  # Ensure this matches the Node.js version you're using
+  }
+
 [[redirects]]
   from = "/*"
   to = "/"
   status = 200
-
