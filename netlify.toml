@@ -1,12 +1,6 @@
-[build]
-  command = "npm run build"
-  publish = "build"
-  environment = { 
-    CI = "false",
-    NODE_VERSION = "18.18.0"
-  }
-
 [[redirects]]
   from = "/*"
   to = "/"
   status = 200
+
+build = { environment = { CI = "false",NODE_VERSION = "18.18.0" } }  
